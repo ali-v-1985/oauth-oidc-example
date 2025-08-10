@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - OAuth2 OpenID Connect Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- Navigation -->
+    <div th:replace="~{fragments/nav :: navbar}"></div>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h4 class="mb-0">
+                            <i class="fas fa-sign-in-alt me-2"></i>
+                            Choose Your Login Method
+                        </h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <p class="text-center text-muted mb-4">
+                            Select an OAuth2 provider to authenticate with OpenID Connect
+                        </p>
+
+                        <!-- Keycloak Login -->
+                        <div class="d-grid gap-3 mb-3">
+                            <a href="/oauth2/authorization/keycloak" class="btn btn-outline-primary btn-lg">
+                                <i class="fab fa-keycdn me-2"></i>
+                                Login with Keycloak
+                            </a>
+                        </div>
+
+                        <!-- Google Login -->
+                        <div class="d-grid gap-3 mb-3">
+                            <a href="/oauth2/authorization/google" class="btn btn-outline-danger btn-lg">
+                                <i class="fab fa-google me-2"></i>
+                                Login with Google
+                            </a>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="text-center">
+                            <small class="text-muted">
+                                <i class="fas fa-info-circle me-1"></i>
+                                These providers use OpenID Connect for secure authentication
+                            </small>
+                        </div>
+
+                        <div class="mt-4">
+                            <div class="alert alert-info">
+                                <h6><i class="fas fa-lightbulb me-2"></i>How it works:</h6>
+                                <ul class="mb-0 small">
+                                    <li>Click on a provider button above</li>
+                                    <li>You'll be redirected to the provider's login page</li>
+                                    <li>After successful authentication, you'll be redirected back</li>
+                                    <li>You'll have access to protected resources</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <i class="fas fa-cog me-2"></i>
+                            Configuration Required
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <p class="small text-muted mb-2">
+                            Before using these login options, you need to:
+                        </p>
+                        <ul class="small text-muted">
+                            <li>Configure OAuth2 clients in your identity provider</li>
+                            <li>Update <code>application.yml</code> with your client credentials</li>
+                            <li>Set up proper redirect URIs</li>
+                        </ul>
+                        <a href="/api/health" class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-heartbeat me-1"></i>
+                            Test Connection
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; 2024 OAuth2 OpenID Connect Example. Built with Spring Boot.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

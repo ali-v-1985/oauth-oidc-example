@@ -1,0 +1,46 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: oauth-oidc-example
+  
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: oauth-oidc-client
+            client-secret: /+sQtGDn4J2u6Vo0ZyIjPsWlz8NHiAIy7tdUuMEF1BI=
+            scope: openid,profile,email
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            client-name: Keycloak
+          google:
+            client-id: your-google-client-id
+            client-secret: your-google-client-secret
+            scope: openid,profile,email
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            client-name: Google
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8081/auth/realms/oauth-oidc-realm
+            jwk-set-uri: http://localhost:8081/auth/realms/oauth-oidc-realm/protocol/openid-connect/certs
+            user-name-attribute: preferred_username
+          google:
+            issuer-uri: https://accounts.google.com
+            jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
+            user-name-attribute: sub
+
+  # JWT Configuration
+  jwt:
+    secret: 8Zz5tw0Ionm3XPZZfN0NOml3z9FMfmpgXwovR9fp6ryDIoGRM8EPHAB6iHsc0fb
+    expiration: 86400000 # 24 hours in milliseconds
+
+# Logging configuration
+logging:
+  level:
+    org.springframework.security: INFO
+    me.valizadeh.practices: INFO
+    org.springframework.web: INFO

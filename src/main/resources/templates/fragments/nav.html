@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-shield-alt me-2"></i>
+                OAuth2 OIDC Example
+            </a>
+            <div class="navbar-nav ms-auto">
+                <!-- Show Logout if authenticated, Login if not -->
+                <a th:if="${#authentication != null and #authentication.principal != 'anonymousUser'}" class="nav-link" href="/logout">
+                    <i class="fas fa-sign-out-alt me-1"></i>
+                    Logout
+                </a>
+                <a th:unless="${#authentication != null and #authentication.principal != 'anonymousUser'}" class="nav-link" href="/login">
+                    <i class="fas fa-sign-in-alt me-1"></i>
+                    Login
+                </a>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>
