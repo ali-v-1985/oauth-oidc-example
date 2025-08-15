@@ -17,6 +17,8 @@ services:
       KC_HOSTNAME_STRICT_HTTPS: false
       KC_HTTP_ENABLED: true
       KC_HTTP_RELATIVE_PATH: /auth
+      # Import realm on startup
+      KC_IMPORT: /opt/keycloak/data/import
     ports:
       - "8081:8080"
     depends_on:
@@ -24,6 +26,9 @@ services:
     networks:
       - oauth-network
     command: start-dev
+    volumes:
+      # Mount realm configuration
+      - ./keycloak-config:/opt/keycloak/data/import
 
   postgres:
     image: postgres:15
